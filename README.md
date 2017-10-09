@@ -1,3 +1,3 @@
 # StudyRoad
-Study and enhance itself
+Study and enhance myself
 This is my study'notes.
