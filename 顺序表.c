@@ -1,20 +1,20 @@
-//Ë³Ğò±í£¨Ìá¸ß°æ£©   
+//é¡ºåºè¡¨ï¼ˆæé«˜ç‰ˆï¼‰   
 #include<stdio.h>
 #include<stdlib.h>
-#define LISTADDSIZE 10//Ôö¼ÓµÄÊıÖµ
+#define LISTADDSIZE 10//å¢åŠ çš„æ•°å€¼
 #define OK 0
 #define ElemType int 
 typedef struct LinearList
 {
 	ElemType *list;
-	int size;           //ÒÑÓĞÔªËØÖµµÄ³¤¶È
-	int MAXSIZE;         //×Ü³¤¶È
+	int size;           //å·²æœ‰å…ƒç´ å€¼çš„é•¿åº¦
+	int MAXSIZE;         //æ€»é•¿åº¦
 }List;
 
-//³õÊ¼»¯Ë³Ğò±í
+//åˆå§‹åŒ–é¡ºåºè¡¨
 int InitList(List *L, int ms) {
 	if (ms<0) {
-		printf("msÊıÖµ²»ÄÜĞ¡ÓÚÁã£¡ÇëÖØĞÂÊäÈë!");
+		printf("msæ•°å€¼ä¸èƒ½å°äºé›¶ï¼è¯·é‡æ–°è¾“å…¥!");
 		exit(1);
 	}
 	L->list = (ElemType *)malloc(ms * sizeof(ElemType));
@@ -23,13 +23,13 @@ int InitList(List *L, int ms) {
 	return OK;
 }
 
-//ÏòË³Ğò±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+//å‘é¡ºåºè¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 int InsertList(List *L, int pos, ElemType elem) {
 	while (pos >= L->MAXSIZE) {
 		ElemType *p = (ElemType *)realloc(L->list, LISTADDSIZE * sizeof(ElemType));
 		if (!p)
 		{
-			printf("ÖØĞÂ·ÖÅäÄÚ´æÊ§°Ü£¡");
+			printf("é‡æ–°åˆ†é…å†…å­˜å¤±è´¥ï¼");
 
 		}
 		L->list = p;
@@ -47,7 +47,7 @@ int InsertList(List *L, int pos, ElemType elem) {
 }
 
 
-//É¾³ıÖ¸¶¨ÔªËØÖµµÄË³Ğò±í¼ÇÂ¼
+//åˆ é™¤æŒ‡å®šå…ƒç´ å€¼çš„é¡ºåºè¡¨è®°å½•
 void DeleteList1(List *L, int elem) {
 	int i;
 	for (i = 0; i <L->size; i++)
@@ -67,7 +67,7 @@ void DeleteList1(List *L, int elem) {
 }
 
 
-//É¾³ıÖ¸¶¨Î»ÖÃµÄË³Ğò±í¼ÇÂ¼
+//åˆ é™¤æŒ‡å®šä½ç½®çš„é¡ºåºè¡¨è®°å½•
 void DeleteList2(List *L, int pos) {
 	int  i;
 	for (i = 0; i <L->size; i++)
@@ -78,25 +78,25 @@ void DeleteList2(List *L, int pos) {
 	L->size--;
 }
 
-//²éÕÒÖ¸¶¨Î»ÖÃµÄË³Ğò±íÔªËØÖµ
+//æŸ¥æ‰¾æŒ‡å®šä½ç½®çš„é¡ºåºè¡¨å…ƒç´ å€¼
 int FindList(List *L, int pos) {
 	return L->list[pos - 1];
 }
 
-//Êä³öË³Ğò±íÔªËØ
+//è¾“å‡ºé¡ºåºè¡¨å…ƒç´ 
 
 int OutputList(List *L) {
-	printf("Ë³Ğò±í¿ªÊ¼Êä³ö£¡\n");
+	printf("é¡ºåºè¡¨å¼€å§‹è¾“å‡ºï¼\n");
 	int i;
 	for (i = 1; i <= L->size; i++)
 	{
 		printf("L[%d]:%d\n", i, L->list[i - 1]);
 	}
-	printf("Ë³Ğò±íÊä³öÍê±Ï£¡\n");
+	printf("é¡ºåºè¡¨è¾“å‡ºå®Œæ¯•ï¼\n");
 	return OK;
 }
 
-//É¾³ıË³Ğò±í£¬ÊÍ·ÅÄÚ´æ¿Õ¼ä
+//åˆ é™¤é¡ºåºè¡¨ï¼Œé‡Šæ”¾å†…å­˜ç©ºé—´
 void ClearList(List *L)
 {
 	if (L->list != NULL)
@@ -107,11 +107,11 @@ void ClearList(List *L)
 	}
 }
 
-//ÅúÁ¿É¾³ıÔªËØÖµÔÚxµ½yµÄËùÓĞÔªËØ(°üº¬X£¬YÖµ) 
+//æ‰¹é‡åˆ é™¤å…ƒç´ å€¼åœ¨xåˆ°yçš„æ‰€æœ‰å…ƒç´ (åŒ…å«Xï¼ŒYå€¼) 
 void  DeleteByXY(List *L, int x, int y) {
 
 	if (y<x) {
-		printf("YÖµ²»Ó¦Ğ¡ÓÚXÖµ£¬ÇëÖØĞÂÊäÈë£¡");
+		printf("Yå€¼ä¸åº”å°äºXå€¼ï¼Œè¯·é‡æ–°è¾“å…¥ï¼");
 	}
 
 	int i = 0, j = 0;
@@ -125,12 +125,12 @@ void  DeleteByXY(List *L, int x, int y) {
 	L->size = L->size - (i - j);
 }
 
-//ºÏ²¢Á½¸öÓĞĞòÏßĞÔ±í£¬Í¬Ò»ÔªËØÖµÖ»³öÏÖÒ»´Î 
+//åˆå¹¶ä¸¤ä¸ªæœ‰åºçº¿æ€§è¡¨ï¼ŒåŒä¸€å…ƒç´ å€¼åªå‡ºç°ä¸€æ¬¡ 
 List* MergeListForOnly(List *L1, List *L2, List *L3) {
 
 	int i = 0;
 	while (!(L1->list[i]==NULL && L2->list[i]==NULL)){
-		//L1½ÏÉÙ 
+		//L1è¾ƒå°‘ 
 		if (L1->list[i]==NULL) {
 			for (i; i<L2->size; i++) {
 				InsertList(L3, i + 1, L2->list[i]);
@@ -138,7 +138,7 @@ List* MergeListForOnly(List *L1, List *L2, List *L3) {
 				return L3;
 
 		}
-		//L2½ÏÉÙ 
+		//L2è¾ƒå°‘ 
 		if (L2->list[i]==NULL) {
 			
 			for (i; i< L1->size; i++) {
@@ -168,44 +168,44 @@ int main()
 	List L;
 	List L1;
 	List L2;
-	InitList(&L, 2);//³õÊ¼»¯
-	InitList(&L1, 2);//³õÊ¼»¯
-	InitList(&L2, 2);//³õÊ¼»¯
+	InitList(&L, 2);//åˆå§‹åŒ–
+	InitList(&L1, 2);//åˆå§‹åŒ–
+	InitList(&L2, 2);//åˆå§‹åŒ–
 					 //l
-	InsertList(&L, 1, 10);//²åÈëÔªËØ
+	InsertList(&L, 1, 10);//æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertList(&L, 2, 9);//²åÈëÔªËØ
+	InsertList(&L, 2, 9);//æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertList(&L, 3, 8);//²åÈëÔªËØ
+	InsertList(&L, 3, 8);//æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertList(&L, 4, 6);//²åÈëÔªËØ
+	InsertList(&L, 4, 6);//æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertList(&L, 5, 5);//²åÈëÔªËØ
+	InsertList(&L, 5, 5);//æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertList(&L, 6, 4);//²åÈëÔªËØ
+	InsertList(&L, 6, 4);//æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertList(&L, 7, 3);//²åÈëÔªËØ
+	InsertList(&L, 7, 3);//æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
 
 	//L1
 
-	InsertList(&L1, 1, 9);//²åÈëÔªËØ
+	InsertList(&L1, 1, 9);//æ’å…¥å…ƒç´ 
 
 
-	InsertList(&L1, 2, 10);//²åÈëÔªËØ
+	InsertList(&L1, 2, 10);//æ’å…¥å…ƒç´ 
 
 
-	InsertList(&L1, 3, 3);//²åÈëÔªËØ
+	InsertList(&L1, 3, 3);//æ’å…¥å…ƒç´ 
 
 
-	InsertList(&L1, 4, 1);//²åÈëÔªËØ
+	InsertList(&L1, 4, 1);//æ’å…¥å…ƒç´ 
 
 
 	MergeListForOnly(&L1, &L, &L2);
@@ -214,17 +214,17 @@ int main()
 
 
 
-	//    DeleteByXY(&L,4,6);//ÅúÁ¿É¾³ıÔªËØÖµÔÚxµ½yµÄËùÓĞÔªËØ(°üº¬X£¬YÖµ) 
+	//    DeleteByXY(&L,4,6);//æ‰¹é‡åˆ é™¤å…ƒç´ å€¼åœ¨xåˆ°yçš„æ‰€æœ‰å…ƒç´ (åŒ…å«Xï¼ŒYå€¼) 
 	//    OutputList(&L);         
 	//
 	//
-	//	FindList(&L, 8); //²éÕÒÖ¸¶¨Î»ÖÃµÄË³Ğò±íÔªËØÖµ
+	//	FindList(&L, 8); //æŸ¥æ‰¾æŒ‡å®šä½ç½®çš„é¡ºåºè¡¨å…ƒç´ å€¼
 	//	OutputList(&L);
 	//
-	//	DeleteList1(&L, 8);//É¾³ıÖ¸¶¨ÔªËØÖµµÄË³Ğò±í¼ÇÂ¼
+	//	DeleteList1(&L, 8);//åˆ é™¤æŒ‡å®šå…ƒç´ å€¼çš„é¡ºåºè¡¨è®°å½•
 	//	OutputList(&L);
 	//
-	//	DeleteList2(&L, 1);//É¾³ıÖ¸¶¨Î»ÖÃµÄË³Ğò±í¼ÇÂ¼
+	//	DeleteList2(&L, 1);//åˆ é™¤æŒ‡å®šä½ç½®çš„é¡ºåºè¡¨è®°å½•
 	//	OutputList(&L);
 	system("pause");
 	return OK;
