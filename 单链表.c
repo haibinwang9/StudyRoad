@@ -1,27 +1,27 @@
-//µ¥Á´±í
+//å•é“¾è¡¨
 #include<stdio.h>
 #include<stdlib.h>
 #define ElemType int
 typedef struct list {
-	ElemType data;   //Êı¾İ 
-	struct list *next;  //Ö¸ÏòÏÂ¸ö½áµã 
+	ElemType data;   //æ•°æ® 
+	struct list *next;  //æŒ‡å‘ä¸‹ä¸ªç»“ç‚¹ 
 }LIST;
 
-//³õÊ¼»¯Á´±í
+//åˆå§‹åŒ–é“¾è¡¨
 void InitList(LIST *L, ElemType ms) {
 	L->data = ms;
 	L->next = NULL;
 }
 
-//ÏòÁ´±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+//å‘é“¾è¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 void InsertListByItem(LIST *L, int item, int re) {
 	LIST *p = L;
-	LIST *in = (LIST*)malloc(sizeof(LIST));//ÉêÇëÒ»¸öĞÂµÄ½áµã£¡£¡ 
+	LIST *in = (LIST*)malloc(sizeof(LIST));//ç”³è¯·ä¸€ä¸ªæ–°çš„ç»“ç‚¹ï¼ï¼ 
 	in->data = item;
 	int i = 1;
 	while (p->next)
 	{
-		if (re == i)//ÔªËØÎ»ÖÃÆ¥Åä 
+		if (re == i)//å…ƒç´ ä½ç½®åŒ¹é… 
 		{
 			in->next = p->next;
 			p->next = in;
@@ -31,12 +31,12 @@ void InsertListByItem(LIST *L, int item, int re) {
 	}
 }
 
-//ÏòÓĞĞòÁ´±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+//å‘æœ‰åºé“¾è¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 void InsertListInEnd(LIST *L, int item) {
 	LIST *p = L;
-	LIST *in = (LIST*)malloc(sizeof(LIST));//ÉêÇëÒ»¸öĞÂµÄ½áµã£¡£¡ 
+	LIST *in = (LIST*)malloc(sizeof(LIST));//ç”³è¯·ä¸€ä¸ªæ–°çš„ç»“ç‚¹ï¼ï¼ 
 	in->data = item;
-	while (!(p->next == NULL))//²»Îª×îºó½áµã£¬Ìøµ½ÏÂ¸ö½áµã 
+	while (!(p->next == NULL))//ä¸ä¸ºæœ€åç»“ç‚¹ï¼Œè·³åˆ°ä¸‹ä¸ªç»“ç‚¹ 
 	{
 		p = p->next;
 	}
@@ -45,34 +45,34 @@ void InsertListInEnd(LIST *L, int item) {
 	return;
 }
 
-//É¾³ıÖ¸¶¨ÔªËØÖµµÄÁ´±í¼ÇÂ¼
+//åˆ é™¤æŒ‡å®šå…ƒç´ å€¼çš„é“¾è¡¨è®°å½•
 int DeleteListByItem(LIST *L, int item) {
 	LIST *p = L;
 	while (p->next)
 	{
-		if (item == p->next->data)//ÔªËØÖµÆ¥Åä 
+		if (item == p->next->data)//å…ƒç´ å€¼åŒ¹é… 
 		{
 
-			p->next = p->next->next;//Ìø¹ıĞèÒªÉ¾³ıµÄ½áµã 
+			p->next = p->next->next;//è·³è¿‡éœ€è¦åˆ é™¤çš„ç»“ç‚¹ 
 		}
-		else p = p->next;//ÏÂ¸ö½áµã 
+		else p = p->next;//ä¸‹ä¸ªç»“ç‚¹ 
 	}
 	return 0;
 }
 
-//É¾³ıÖ¸¶¨Î»ÖÃµÄÔªËØ 
+//åˆ é™¤æŒ‡å®šä½ç½®çš„å…ƒç´  
 int DeleteListByPos(LIST *L, int pos) {
 	int i = 1;
 	LIST *p = L;
 	while (p->next)
 	{
-		if (pos == i)//ÔªËØÖµÆ¥Åä 
+		if (pos == i)//å…ƒç´ å€¼åŒ¹é… 
 		{
 
-			p->next = p->next->next;//Ìø¹ıĞèÒªÉ¾³ıµÄ½áµã 
+			p->next = p->next->next;//è·³è¿‡éœ€è¦åˆ é™¤çš„ç»“ç‚¹ 
 			return 0;
 		}	
-			p = p->next;//ÏÂ¸ö½áµã 
+			p = p->next;//ä¸‹ä¸ªç»“ç‚¹ 
 			i++;
 	}
 	return 1;
@@ -82,17 +82,17 @@ int DeleteListByPos(LIST *L, int pos) {
 
 
 
-//²éÕÒÁ´±íÖĞµÄÔªËØ
+//æŸ¥æ‰¾é“¾è¡¨ä¸­çš„å…ƒç´ 
 int FindList(LIST *L, int item) {
 	LIST *p = L;
 	int i = 1;
 	while (p->next)
 	{
-		if (item == p->next->data)//ÔªËØÖµÆ¥Åä 
+		if (item == p->next->data)//å…ƒç´ å€¼åŒ¹é… 
 		{
-			return i;        //·µ»ØÔªËØÎ»ÖÃ 
+			return i;        //è¿”å›å…ƒç´ ä½ç½® 
 		}
-		p = p->next;    //ÏÂ¸ö½áµã 
+		p = p->next;    //ä¸‹ä¸ªç»“ç‚¹ 
 		i++;
 	}
 	printf("No Find!");
@@ -100,7 +100,7 @@ int FindList(LIST *L, int item) {
 }
 
 
-//Êä³öÁ´±íÔªËØ
+//è¾“å‡ºé“¾è¡¨å…ƒç´ 
 int OutputList(LIST *L) {
 	LIST *p = L;
 	int i = 1;
@@ -116,21 +116,21 @@ int OutputList(LIST *L) {
 }
 
 
-//Ò»¸öµ¥Á´±íA·ÖÎª ĞòºÅÎªÅ¼ÊıÎªBÁ´±í£¬ÆæÊıÎªAÁ´±í¡£ 
+//ä¸€ä¸ªå•é“¾è¡¨Aåˆ†ä¸º åºå·ä¸ºå¶æ•°ä¸ºBé“¾è¡¨ï¼Œå¥‡æ•°ä¸ºAé“¾è¡¨ã€‚ 
 int SeparateList(LIST *A, LIST *B) {
 	int i = 1;
 	LIST *a = A;
 	while (a->next) {
-		//ÊÇ·ñÎªÅ¼ÊıÎ»Êı
+		//æ˜¯å¦ä¸ºå¶æ•°ä½æ•°
 		if (!(i % 2)) {
 			ElemType data=0;
-			data = a->next->data;//±£´æĞèÒªÉ¾³ıµÄÊı¾İ£»
-			a->next= a->next->next;//É¾³ıµÄ½áµã
-			InsertListInEnd(B, data);//½«Êı¾İ±£´æµ½BÁ´±íÖĞ
+			data = a->next->data;//ä¿å­˜éœ€è¦åˆ é™¤çš„æ•°æ®ï¼›
+			a->next= a->next->next;//åˆ é™¤çš„ç»“ç‚¹
+			InsertListInEnd(B, data);//å°†æ•°æ®ä¿å­˜åˆ°Bé“¾è¡¨ä¸­
 		}
 		else
 		{
-			a = a->next;//ÏÂ¹ı½áµã£»
+			a = a->next;//ä¸‹è¿‡ç»“ç‚¹ï¼›
 		}
 		i++;
 	}
@@ -139,37 +139,37 @@ int SeparateList(LIST *A, LIST *B) {
 }
 
 
-//Äæ×ªµ¥Á´±í(·½·¨1£©
+//é€†è½¬å•é“¾è¡¨(æ–¹æ³•1ï¼‰
 int ReverseList_Method1(LIST *L) {
 	LIST *p=L;
-	LIST *head=L;//±£´æÍ·½áµã
-	LIST flag1;//´¢´æÔ­Á´±íµÄÇ°ÇıµØÖ·
-	LIST flag2;//´¢´æÔ­Á´±íµÄºóÇıµØÖ·
+	LIST *head=L;//ä¿å­˜å¤´ç»“ç‚¹
+	LIST flag1;//å‚¨å­˜ç»“ç‚¹çš„å‰é©±åœ°å€
+	LIST flag2;//å‚¨å­˜ç»“ç‚¹çš„åé©±åœ°å€
 
-	   //¶ÔÊ×½áµãµÄ²Ù×÷
-		flag1.next=p->next;   //±£´æµÚÒ»¸ö½áµãµÄµØÖ·
-		p=p->next;            //Ö¸ÏòµÚÒ»¸ö½áµã£¨Ç°Çı£©
-		flag2.next = p->next; //±£´æµÚ¶ş¸ö£¨ºóÇı£©µÄµØÖ·
-		p->next = NULL;		  // ¶ÔµÚÒ»¸ö½áµãµÄnextÖ¸ÏòNULL£¬¼´±äÎªÁ´±íµÄÎ²¶Ë
-		p = flag2.next;		  //½«µÚ¶ş¸ö½áµãµÄµØÖ·¸øp
+	   //å¯¹é¦–ç»“ç‚¹çš„æ“ä½œ
+		flag1.next=p->next;   //ä¿å­˜ç¬¬ä¸€ä¸ªç»“ç‚¹çš„åœ°å€
+		p=p->next;            //æŒ‡å‘ç¬¬ä¸€ä¸ªç»“ç‚¹ï¼ˆå‰é©±ï¼‰
+		flag2.next = p->next; //ä¿å­˜ç¬¬äºŒä¸ªï¼ˆåé©±ï¼‰çš„åœ°å€
+		p->next = NULL;		  // å¯¹ç¬¬ä¸€ä¸ªç»“ç‚¹çš„nextæŒ‡å‘NULLï¼Œå³å˜ä¸ºé“¾è¡¨çš„å°¾ç«¯
+		p = flag2.next;		  //å°†ç¬¬äºŒä¸ªç»“ç‚¹çš„åœ°å€ç»™p
 
 
-	//	¶ÔÖĞ¼ä½áµãµÄ²Ù×÷
-	while (p->next)   //ÅĞ¶ÏÊÇ·ñµ½´ïÔ­Á´±íµÄÎ²½áµã
+	//	å¯¹ä¸­é—´ç»“ç‚¹çš„æ“ä½œ
+	while (p->next)   //åˆ¤æ–­æ˜¯å¦åˆ°è¾¾åŸé“¾è¡¨çš„å°¾ç»“ç‚¹
 	{
-		flag2.next= p->next;  //±£´æºóÇıµÄµØÖ·
-		p->next= flag1.next;  //½«Ç°ÇıµÄµØÖ·¸³Óè¸Ã½áµãµÄnext
-		flag1.next = p;       //±£´æ¸Ã½áµãµÄµØÖ·
-		p  = flag2.next;	  //½«pÖ¸ÕëÏòÁ´±íµÄºóÃæÒÆ¶¯ÄÇ¸ö£¬¼´ºóÇıµÄµØÖ·¸³Óèp
+		flag2.next= p->next;  //ä¿å­˜åé©±çš„åœ°å€
+		p->next= flag1.next;  //å°†å‰é©±çš„åœ°å€èµ‹äºˆè¯¥ç»“ç‚¹çš„next
+		flag1.next = p;       //ä¿å­˜è¯¥ç»“ç‚¹çš„åœ°å€
+		p  = flag2.next;	  //å°†pæŒ‡é’ˆå‘é“¾è¡¨çš„åé¢ç§»åŠ¨é‚£ä¸ªï¼Œå³åé©±çš„åœ°å€èµ‹äºˆp
     
 	}
-    //	¶ÔÎ²½áµãµÄ²Ù×÷
-	p->next = flag1.next;   //½«Ç°ÇıµÄµØÖ·¸³ÓèÔ­Á´±íµÄÎ²½áµãµÄnext
-	head->next = p;         //½«Í·½áµãÖ¸ÏòÔ­Á´±íµÄÎ²½áµã
+    //	å¯¹å°¾ç»“ç‚¹çš„æ“ä½œ
+	p->next = flag1.next;   //å°†å‰é©±çš„åœ°å€èµ‹äºˆåŸé“¾è¡¨çš„å°¾ç»“ç‚¹çš„next
+	head->next = p;         //å°†å¤´ç»“ç‚¹æŒ‡å‘åŸé“¾è¡¨çš„å°¾ç»“ç‚¹
 	return 0;
 }
 
-//Äæ×ªµ¥Á´±í(·½·¨2£©,´´½¨Ò»¸öĞÂµÄÁ´±í£¬²¢ÇÒÔËÓÃ²åÈë·½·¨½øĞĞ²Ù×÷
+//é€†è½¬å•é“¾è¡¨(æ–¹æ³•2ï¼‰,åˆ›å»ºä¸€ä¸ªæ–°çš„é“¾è¡¨ï¼Œå¹¶ä¸”è¿ç”¨æ’å…¥æ–¹æ³•è¿›è¡Œæ“ä½œ
 int ReverseList_Method2(LIST *L, LIST *N) {
 	LIST *p = L;
 	while (p->next)
@@ -188,31 +188,31 @@ int main() {
 	LIST L;
 	LIST B;
 
-	InitList(&L, 0);//³õÊ¼»¯
-	InitList(&B, 0);//³õÊ¼»¯
+	InitList(&L, 0);//åˆå§‹åŒ–
+	InitList(&B, 0);//åˆå§‹åŒ–
 
-	InsertListInEnd(&L, 10);//ÏòÓĞĞòÁ´±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+	InsertListInEnd(&L, 10);//å‘æœ‰åºé“¾è¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertListInEnd(&L, 9);//ÏòÓĞĞòÁ´±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+	InsertListInEnd(&L, 9);//å‘æœ‰åºé“¾è¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertListInEnd(&L, 8);//ÏòÓĞĞòÁ´±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+	InsertListInEnd(&L, 8);//å‘æœ‰åºé“¾è¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertListInEnd(&L, 7);//ÏòÓĞĞòÁ´±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+	InsertListInEnd(&L, 7);//å‘æœ‰åºé“¾è¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertListInEnd(&L, 6);//ÏòÓĞĞòÁ´±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+	InsertListInEnd(&L, 6);//å‘æœ‰åºé“¾è¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertListInEnd(&L, 5);//ÏòÓĞĞòÁ´±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+	InsertListInEnd(&L, 5);//å‘æœ‰åºé“¾è¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	InsertListByItem(&L, 10, 2);//ÏòÁ´±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+	InsertListByItem(&L, 10, 2);//å‘é“¾è¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 	OutputList(&L);
 
-	printf("Á´±íÖĞµÚ%d¸öÎª5\n", FindList(&L, 5));//²éÕÒÁ´±íÖĞµÄÔªËØ
+	printf("é“¾è¡¨ä¸­ç¬¬%dä¸ªä¸º5\n", FindList(&L, 5));//æŸ¥æ‰¾é“¾è¡¨ä¸­çš„å…ƒç´ 
 
 	SeparateList(&L, &B);
 	OutputList(&L);
@@ -221,7 +221,7 @@ int main() {
 	ReverseList_Method1(&L);
 	OutputList(&L);
 
-	//	DeleteListByItem(&L, 10);//É¾³ıÖ¸¶¨ÔªËØÖµµÄÁ´±í¼ÇÂ¼
+	//	DeleteListByItem(&L, 10);//åˆ é™¤æŒ‡å®šå…ƒç´ å€¼çš„é“¾è¡¨è®°å½•
 	//	OutputList(&L);
 	system("pause");
 
