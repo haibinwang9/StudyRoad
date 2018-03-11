@@ -1,0 +1,474 @@
+提示符#：root
+提示符$:普通用户
+Ctr+c ：  终止命令
+Ctr+d:  暂停某个程序
+
+
+!!    重复前一个命令
+!字符  重复前一个以‘字符’开头的命令
+!num(数字）  按照历史记录
+...
+
+可以通过Ctr+r来在历史记录中搜索命令
+重复调用前一个命令的参数   esc，按esc后按.
+
+支持以下通配符：正则表达式的规则
+
+su -切换到root用户并使用一个新的运行环境
+sudo 使用管理员用户身份运行命令
+id  显示当前用户信息
+passwd  修改当前用户的密码
+
+在命令后添加一个&：  在后台允许进程
+
+管理后台作业：
+	jobs：查看所有后台作业
+	bg（background）：后台作业
+	fg：拉回前台作业
+
+touch：
+	创建一个空文件
+	更新一个已存在的文件的时间
+	
+file：  告诉我们目标文件的类型
+
+输入，查看命令：
+	echo:用以显示输入的内容
+	cat:用以显示文件内容
+	head：用以显示文件的头几行
+		-n 指定显示的行数
+	tail：用以显示文件的末尾几行（默认十行）
+		-n 指定显示的行数
+		-f 追踪显示文件更新（用于查看日志）
+	more：用于翻页显示文件内容（只能向下翻页）
+	less：用于翻页显示文件内容（上下翻页）
+	
+查看设备信息：
+	lspci：查看pci设备
+		-v 查看详细信息
+	lsusb：查看usb设备
+		-v 查看详细信息
+	lsmod：查看加载的所有的模块（驱动）
+	
+查找：
+	locate keyword  快速查找	此命令需要预先建立数据库，数据库默认一天一次更新，可以是用update命令手工建立，更新数据库。
+	find 高级查找：
+	find 查找位置 查找参数
+	如： 
+		find . -name 文件名 可使用通配符
+	    find / -perm 权限数字   按权限查找。  permission
+		find / -type d    返回所有目录
+		find . -name "a*" -exec ls -l {} \;   ls -l 为执行命令可改
+
+
+vim基础使用
+
+vim三种模式：命令模式、插入模式、编辑模式。使用ESC或i或：来切换模式。
+
+命令模式下：
+
+：w   					 保存
+:q                      退出
+
+:q!                     强制退出
+
+:wq    :x                保存并退出
+
+:set number     显示行号
+:set nonumber  隐藏行号
+
+:!  系统命令     执行一个系统命令并显示结果
+:sh      切换到shell ，可以使用 ctrl +d 切换会vim
+
+
+h(左移一个字符←)、j(下一行↓)、k(上一行↑)、l(右移一个字符→)
+
+	i   在光标前插入文本
+	o   在当前行的下面插入文本
+	dd  删除当前行
+	yy  将当前行的内容放入缓冲区（复制当前行）
+	n+yy  将n行的内容放入缓冲区（复制n行）
+	p    将缓冲区的文本输入到光标后（粘帖）
+	u    撤销上一个操作
+	r    替代当前字符
+	/     查找当前字符
+
+
+		
+		
+		
+1.pwd 
+	显示当前位置
+2 文件类型说明：
+	-rw-r--r--：
+	- 文件类型 （-文件 d目录 l 软链接文件）
+	rw-     r--     r--
+   u所有者  g所属者 o其他人
+	 r读 w写 x执行
+	 
+3.ls [选项] [文件或目录]
+	选项：
+		-a  显示所有文件，包括隐藏文件
+		-l	显示详细信息    (别名：ll）
+		-d	查看目录属性
+		-h	人性化显示文件大小
+		-i	显示inode
+		
+4. mkdir （make directories） （建立目录）
+	-p 递归创建
+5.cd [目录]
+   	英文：change directory
+	操作：
+	 cd ~ 进入当前目录的家目录
+	 cd - 进入上次目录
+	 cd .. 进入上一级目录
+	 cd . 进入当前目录
+	补充知识点：
+		相对路径：参照当前目录，进行查找
+		如: [root@localhost ~]#cd ../usr/local/src/
+		绝对路径：从根目录开始指定，一级一级递归查找。在任何目录下都能进入指定目录
+		如：[root@localhost ~]#cd /etc/
+		
+6.rm （删除文件或者目录）
+	rm -rf [目录或文件]
+   英文：remove
+   选项：
+		-r 删除目录
+		-f 强制删除
+7.cp （复制命令）
+	英文：copy
+	选项：
+		-r   复制目录
+		-p   连带文件属性复制
+		-d   若源文件是链接文件，则复制链接属性
+		-a   相当于 -pdr
+		
+8.mv 剪切或者改名命令
+	英文：move
+	mv 没有 -r 
+	如：
+    mv japan/ /temp/japan1/
+	
+	改名（源文件与目标文件在同一目录下就是改名命令）
+	
+	如：
+	mv japan japan1
+	
+	
+9.根目录文件
+	/     根目录
+	
+	/bin  存放必要的命令
+	
+	/boot 存放内核以及启动所需要的文件等
+	
+	/dev  存放设备文件
+	
+	/etc  存放系统的配置文件
+	
+	/home 用户文件的主目录，用户数据存放在其主目录中
+	
+	/lib  存放必要的运行库
+	
+	/mnt  存放临时的映射文件系统，我们常把软驱和光驱挂装在这的folppy和cdrom自目录下。
+	
+	/proc 存放存储进程和系统信息
+	
+	/root 超级用户的主目录
+	
+	/sbin 存放系统管理程序
+	
+	/tmp  存放临时文件的目录
+	
+	/usr  包含了一般不需要的应用程序，命令程序文件，程序库，手册和其他文档。
+	
+	/var  包含系统产生的经常变化的文件
+	
+10.touch 创建一个空文件
+
+
+
+
+11.Linux中通配符
+		*  		匹配任意内容
+		?		匹配任意一个字符
+		[]		匹配任意一个中括号内的字符
+	
+	
+	
+	
+	
+	
+常用指令
+
+ls　　        显示文件或目录
+
+     -l           列出文件详细信息l(list)
+
+     -a          列出当前目录下所有文件及目录，包括隐藏的a(all)
+
+mkdir         创建目录
+
+     -p           创建目录，若无父目录，则创建p(parent)
+
+cd               切换目录
+
+touch          创建空文件
+
+echo            创建带有内容的文件。
+
+cat              查看文件内容
+
+cp                拷贝
+
+mv               移动或重命名
+
+rm               删除文件
+
+     -r            递归删除，可删除子目录及文件
+
+     -f            强制删除
+
+find              在文件系统中搜索某文件
+
+wc                统计文本中行数、字数、字符数
+
+grep             在文本文件中查找某个字符串
+
+rmdir           删除空目录
+
+tree             树形结构显示目录，需要安装tree包
+
+pwd              显示当前目录
+
+ln                  创建链接文件
+
+more、less  分页显示文本文件内容
+
+head、tail    显示文件头、尾内容
+
+ctrl+alt+F1  命令行全屏模式
+
+ 
+
+系统管理命令
+
+stat              显示指定文件的详细信息，比ls更详细
+
+who               显示在线登陆用户
+
+whoami          显示当前操作用户
+
+hostname      显示主机名
+
+uname           显示系统信息
+
+top                动态显示当前耗费资源最多进程信息
+
+ps                  显示瞬间进程状态 ps -aux
+
+du                  查看目录大小 du -h /home带有单位显示目录信息
+
+df                  查看磁盘大小 df -h 带有单位显示磁盘信息
+
+ifconfig          查看网络情况
+
+ping                测试网络连通
+
+netstat          显示网络状态信息
+
+man                命令不会用了，找男人  如：man ls
+
+clear              清屏
+
+alias               对命令重命名 如：alias showmeit="ps -aux" ，另外解除使用unaliax showmeit
+
+kill                 杀死进程，可以先用ps 或 top命令查看进程的id，然后再用kill命令杀死进程。
+
+ 
+
+打包压缩相关命令
+
+gzip：
+
+bzip2：
+
+tar:                打包压缩
+
+     -c              归档文件
+
+     -x              压缩文件
+
+     -z              gzip压缩文件
+
+     -j              bzip2压缩文件
+
+     -v              显示压缩或解压缩过程 v(view)
+
+     -f              使用档名
+
+例：
+
+tar -cvf /home/abc.tar /home/abc              只打包，不压缩
+
+tar -zcvf /home/abc.tar.gz /home/abc        打包，并用gzip压缩
+
+tar -jcvf /home/abc.tar.bz2 /home/abc      打包，并用bzip2压缩
+
+当然，如果想解压缩，就直接替换上面的命令  tar -cvf  / tar -zcvf  / tar -jcvf 中的“c” 换成“x” 就可以了。
+
+ 
+
+关机/重启机器
+
+shutdown
+
+     -r             关机重启
+
+     -h             关机不重启
+
+     now          立刻关机
+
+halt               关机
+
+reboot          重启
+
+ 
+
+Linux管道
+
+将一个命令的标准输出作为另一个命令的标准输入。也就是把几个命令组合起来使用，后一个命令除以前一个命令的结果。
+
+例：grep -r "close" /home/* | more       在home目录下所有文件中查找，包括close的文件，并分页输出。
+
+ 
+
+Linux软件包管理
+
+dpkg (Debian Package)管理工具，软件包名以.deb后缀。这种方法适合系统不能联网的情况下。
+
+比如安装tree命令的安装包，先将tree.deb传到Linux系统中。再使用如下命令安装。
+
+sudo dpkg -i tree_1.5.3-1_i386.deb         安装软件
+
+sudo dpkg -r tree                                     卸载软件
+
+ 
+
+注：将tree.deb传到Linux系统中，有多种方式。VMwareTool，使用挂载方式；使用winSCP工具等；
+
+APT（Advanced Packaging Tool）高级软件工具。这种方法适合系统能够连接互联网的情况。
+
+依然以tree为例
+
+sudo apt-get install tree                         安装tree
+
+sudo apt-get remove tree                       卸载tree
+
+sudo apt-get update                                 更新软件
+
+sudo apt-get upgrade        
+
+ 
+
+将.rpm文件转为.deb文件
+
+.rpm为RedHat使用的软件格式。在Ubuntu下不能直接使用，所以需要转换一下。
+
+sudo alien abc.rpm
+
+ 
+ 
+
+用户及用户组管理
+
+/etc/passwd    存储用户账号
+
+/etc/group       存储组账号
+
+/etc/shadow    存储用户账号的密码
+
+/etc/gshadow  存储用户组账号的密码
+
+useradd 用户名
+
+userdel 用户名
+
+adduser 用户名
+
+groupadd 组名
+
+groupdel 组名
+
+passwd root     给root设置密码
+
+su root
+
+su - root 
+
+/etc/profile     系统环境变量
+
+bash_profile     用户环境变量
+
+.bashrc              用户环境变量
+
+su user              切换用户，加载配置文件.bashrc
+
+su - user            切换用户，加载配置文件/etc/profile ，加载bash_profile
+
+更改文件的用户及用户组
+
+sudo chown [-R] owner[:group] {File|Directory}
+
+例如：还以jdk-7u21-linux-i586.tar.gz为例。属于用户hadoop，组hadoop
+
+要想切换此文件所属的用户及组。可以使用命令。
+
+sudo chown root:root jdk-7u21-linux-i586.tar.gz
+
+ 
+
+文件权限管理
+
+三种基本权限
+
+R           读         数值表示为4
+
+W          写         数值表示为2
+
+X           可执行  数值表示为1
+
+
+
+如图所示，jdk-7u21-linux-i586.tar.gz文件的权限为-rw-rw-r--
+
+-rw-rw-r--一共十个字符，分成四段。
+
+第一个字符“-”表示普通文件；这个位置还可能会出现“l”链接；“d”表示目录
+
+第二三四个字符“rw-”表示当前所属用户的权限。   所以用数值表示为4+2=6
+
+第五六七个字符“rw-”表示当前所属组的权限。      所以用数值表示为4+2=6
+
+第八九十个字符“r--”表示其他用户权限。              所以用数值表示为2
+
+所以操作此文件的权限用数值表示为662 
+
+更改权限
+
+sudo chmod [u所属用户  g所属组  o其他用户  a所有用户]  [+增加权限  -减少权限]  [r  w  x]   目录名 
+
+例如：有一个文件filename，权限为“-rw-r----x” ,将权限值改为"-rwxrw-r-x"，用数值表示为765
+
+sudo chmod u+x g+w o+r  filename
+
+上面的例子可以用数值表示
+
+sudo chmod 765 filename
+	
+	
+	
+	
+	
+	
+		
