@@ -1,0 +1,50 @@
+命令列表：
+1....
+
+en   进入特权模式
+
+confgure terminal 从特权模式进入全局模式
+
+username name password password 为网络设备指定名称，参数name为名称，后面跟相对应的密码
+
+enable password password  为进去特权模式的密码
+
+interface vlan vlan-id 
+定义参数为vlan-id的vlan对应的指定IP接口，并进入接口配置模式
+
+ip address ip-address subnet-mask 为接口配置ip地址，子网掩码。
+no  shutdown 开启某个交换机的端口或者ip接口
+
+exit 退出
+
+line vty 0 4  固定用法，进入仿真终端配置模式
+
+login local 固定用法，指定用本地定义的授权用户鉴别用户身份
+
+no cdp run  停止运行CDP
+
+mac-address-table 清空交换机转发表
+
+
+2...
+vlan id   创建编号为id的VLAN
+
+interface 端口  进入端口配置模式
+
+switchport mode [access] [dynamic] [trunk]  端口配置模式下使用
+access :  将特定的交换机端口指定为 接入端口
+trunk: 将指定的交换机端口指定为主干端口,既是共享端口有事标记端口（802.1Q）
+dynamic:将特定的交换机端口指定为 动态端口
+switchport access vlan id  接口模式下使用，将指定交换机的端口作为接入端口分配给编号为id的VLAN
+
+
+switchport trunk allowed vlan id1....idn
+接口配置模式下使用，指定共享指定交换机端口的vlan集合。
+
+3...
+vtp domain domain-name  将交换机域名设置为domain-name，可以是任意字符串
+
+vtp mode [client] [server] [transparent]    设置交换机VTP模式
+
+vtp version number  将交换机VTP版本号设置为number，参数number的取值为1或2
+

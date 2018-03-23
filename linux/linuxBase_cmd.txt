@@ -50,6 +50,20 @@ file：  告诉我们目标文件的类型
 		-v 查看详细信息
 	lsmod：查看加载的所有的模块（驱动）
 	
+	
+ifconfig：查看所有网卡信息
+	ifup name：启动nanme网卡
+	ifdown name  禁用该网卡
+网卡的配置文件：/etc/sysconfig/network-scripts/ifcfg-names
+
+DNS配置文件： /etc/resolv.conf
+
+主机名配置文件：/etc/sysconfig/network
+
+host文件：/etc/hosts
+
+
+	
 查找：
 	locate keyword  快速查找	此命令需要预先建立数据库，数据库默认一天一次更新，可以是用update命令手工建立，更新数据库。
 	find 高级查找：
@@ -92,6 +106,10 @@ h(左移一个字符←)、j(下一行↓)、k(上一行↑)、l(右移一个字
 	u    撤销上一个操作
 	r    替代当前字符
 	/     查找当前字符
+
+
+		
+		
 
 
 		
