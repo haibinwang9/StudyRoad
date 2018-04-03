@@ -48,3 +48,24 @@ vtp mode [client] [server] [transparent]    设置交换机VTP模式
 
 vtp version number  将交换机VTP版本号设置为number，参数number的取值为1或2
 
+
+
+生成树协议：
+spanning-tree mode { pvst |rapid-pvst}  
+设置交换机生成树协议工作模式，可以选择的工作模式有pvst和rapid-pvst
+
+spanning-tree vlan vlan-id priority PRIORITY
+设置交换机构建基于VLAN的生成树时具有的优先级，参数vlan-id 用于指定VLAN，参数 PRIORITY 用于指定优先级
+
+spanning-tree vlan-id root secondary
+将交换机设置为基于VLAN的生成树的备份根网桥，参数vlan-id 用于指定VLAN。备份根网桥作为主根网桥故障时作为根网桥
+
+spanning-tree portfast default
+将交换机所有接入端口设置为快速转换成转发状态方式
+
+spanning-tree portfast disable 取消spanning-tree portfast default命令对接入端口的作用
+
+spanning-tree portfast trunk 使得spanning-tree portfast default命令作用到指定共享端口
+
+
+
