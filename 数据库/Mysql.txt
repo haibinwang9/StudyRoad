@@ -1,0 +1,86 @@
+
+
+最后一次修改时间:    2018 5 16 
+
+
+
+mysql表创建好后添加外键
+ 命令:alter table 需加外键的表 add constraint 外键名 foreign key(需加外键表的字段名) references 关联表名(关联字段名);
+ 
+ 例如：
+  alter table Student ADD CONSTRAINT 外键名 FOREIGN KEY(Dno) references Dept(Dno);
+  
+
+mysql查看表结构的几种方式:
+	desc table_name;
+	show fields from table_name;
+	show full fields from table_name;
+	show index from table_name;
+	show create table table_name;
+	
+创建主键可以有两种方式：
+		create table 表名（
+		字段名 类型，
+		字段名 类型，
+		……
+		primary key(name)
+		);
+
+		或者是
+
+		create table 表名（
+		字段名 类型 primary key，
+		字段名 类型，
+		……
+		);
+
+		但是要注意的是，想要创建复合主键，就不可以用第二种方式。	如果项设置复合主键，复合主键的特点是同时创建、同时删除，所以需要把主键删除，但是这里设置了自增，需要先把自增删除，才可以删除主键，如果不先删除自增，而直接删除主键的话会报错
+		
+
+		
+		
+整理一下，这里是关于表的定义与维护：
+
+1，定义表结构（创建表）：
+	CREATE TABLE TABLE_NAME(
+	列名 数据类型 列级完整约束性，
+	列名 数据类型 列级完整约束性，
+	列名 数据类型 列级完整约束性，
+	.......
+)DEFAULT CHARSET=utf8;   //设置编码等一些操作
+
+
+2.对完整约束条件进行详细说明
+ 对列级进行约束：
+	1) NULL/NOT NULL 是否可以为空。
+	2) UNIQUE 唯一值 某一列或某多列的组合上的取值必须唯一
+	3）DEFAULT 默认约束
+	4）CHECK 检查约束 （常常用一些判断语句例如: BETWEEN Scoure>=0 AND Scoure<=100）
+   
+ 对表级进行约束:
+	1） UNIQUE 唯一值 要求列组的值不能有重复值
+	2）PRIMARY KEY  定义主键
+	3）FOREIGN KEY 定义外键
+	
+
+3，修改表
+	ALTER TABLE TABLE_NAME ADD 列名 数据结构 完整性约束性    //添加列
+						   DROP 完整性约束性       			 //删除已存在的完整约束性条件
+						   MODIFY 列名 数据类型              //修改属性的数据类型
+						   CONSTRAINT  完整性约束性          //添加约束条件 相当于放在后面的约束条件
+					
+	
+4，删除表
+	1）DELECT FROM 表名  WHERE 删除条件;     //删除表内部分数据
+	2) TRUNCATE TABLE 表名;                  //删除表内所有数据，保留表结构
+	3）DROP TABLE 表名;						 //删除表，包括数据和表结构
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
