@@ -8,7 +8,7 @@ typedef struct {
    struct Node  *next;    //指向下一个节点
 }Node,*NodePtr;
 
-//带头节点的单链表结构定义（头节点不储存值）
+//带头节点的单链表结构定义（头节点储存数据）
 typedef struct {
     NodePtr head;   //头节点
     unsigned int length;//链表长度
